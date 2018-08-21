@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd"
+    >
+<html lang="en">
+<head>
+    <title>First Ajax</title>
+    <script language="javascript" type="text/javascript">
+    var xmlhttp;
+    
+    function getNum()
+    {
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = callback;
+        
+        xmlhttp.open("GET", "random.php", true);
+        xmlhttp.send();
+    }
+    
+    //When Information comes back from the server
+    function callback()
+    {
+        console.log("Ready State: " + xmlhttp.readyState + "\nStatus" + xmlhttp.status);
+        if(xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            document.getElementById('result').innerHTML = xmlhttp.responseText;
+        }
+    }
+    
+    </script>
+</head>
+<body>
+    <div id="result">
+    </div>
+    <input type="button" value="Get Random Number" onclick="getNum()"/>
+</body>
+</html>
